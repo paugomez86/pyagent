@@ -9,3 +9,10 @@ wheels/
 # Virtual environments
 .venv
 .env
+.vscode
+
+# Calculator
+/calculator/*
+
+# Test files
+test_*
