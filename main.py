@@ -21,7 +21,7 @@ def main():
     parser = argparse.ArgumentParser(description="Gemini LLM powered chatbot")
     parser.add_argument("user_prompt", type=str, help="User prompt")
     parser.add_argument("-V", "--verbose", action="store_true", help="Enable verbose output")
-    
+
     # Catch prompt argument
     args = parser.parse_args()
     prompt = args.user_prompt
@@ -40,7 +40,14 @@ def main():
         print(f"User prompt: {prompt}")
         print(f"Prompt tokens: {response.usage_metadata.prompt_token_count}")
         print(f"Response tokens: {response.usage_metadata.candidates_token_count}\n")
-    print(f"{response.text}")
+    
+    # Printing function calls if there are any
+    if response.function_calls is not None:
+        for function_call in response.function_calls:
+            print(f"Calling function: {function_call.name}({function_call.args})")
+    else:
+        # Printing plain text response
+        print(f"{response.text}")
     
 
 if __name__ == "__main__":

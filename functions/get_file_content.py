@@ -1,5 +1,22 @@
 import os
 from config import MAX_CHARS
+from google.genai import types
+
+# Schema for getting content from a file. It tells the LLM how to use the function. Function below
+schema_get_file_content = types.FunctionDeclaration(
+    name="get_file_content",
+    description="Gets the content of a file in text format. The content is truncated if exceeds MAX_CHARS constant value",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file_path": types.Schema(
+                type=types.Type.STRING,
+                description="Path of the target file to get the content from, relative to the working directory",
+            ),
+        },
+        required=["file_path"],
+    ),
+)
 
 def get_file_content(working_directory, file_path):
     try:

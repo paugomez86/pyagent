@@ -1,4 +1,25 @@
 import os
+from google.genai import types
+
+# Schema for writing to a file. It tells the LLM how to use the function. Function below
+schema_write_file = types.FunctionDeclaration(
+    name="write_file",
+    description="Writes the given content to the given file",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file_path": types.Schema(
+                type=types.Type.STRING,
+                description="Path of the target file to write the content to, relative to the working directory",
+            ),
+            "content": types.Schema(
+                type=types.Type.STRING,
+                description="The content in text format that will be written to the target file",
+            )
+        },
+        required=["file_path", "content"],
+    ),
+)
 
 def write_file(working_directory, file_path, content):
     try:

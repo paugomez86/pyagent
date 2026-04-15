@@ -1,5 +1,30 @@
 import os
 import subprocess
+from google.genai import types
+
+# Schema for runing python scripts. It tells the LLM how to use the function. Function below
+schema_run_python_file = types.FunctionDeclaration(
+    name="run_python_file",
+    description="Runs the given file passing the arguments if provided",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file_path": types.Schema(
+                type=types.Type.STRING,
+                description="Path of the target file to run, relative to the working directory",
+            ),
+            "args": types.Schema(
+                type=types.Type.ARRAY,
+                description="The list of arguments passed to the current target file to run",
+                items=types.Schema(
+                    type=types.Type.STRING,
+                    description="Each of the arguments that are passed"
+                ),
+            ),
+        },
+        required=["file_path"],
+    ),
+)
 
 def run_python_file(working_directory, file_path, args=None):
     try:
