@@ -4,3 +4,4 @@ DEFAULT_WORKING_DIRECTORY = "./calculator"
 
 # Additional
 MAX_CHARS = 10000
+MAX_MODEL_LOOP = 20
