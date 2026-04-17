@@ -1,6 +1,6 @@
-# Default working directory provided. Calculator for test purposes. Relative from project root
+# Default working directory provided. Relative from project root
 # Need to change this in order to use it otherwise
-DEFAULT_WORKING_DIRECTORY = "./calculator"
+DEFAULT_WORKING_DIRECTORY = "./project"
 
 # Additional
 MAX_CHARS = 10000

@@ -11,7 +11,7 @@ wheels/
 .env
 .vscode
 
-# Calculator
+# Calculator project for testing purposes
 /calculator/*
 
 # Test files
