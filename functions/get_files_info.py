@@ -30,9 +30,9 @@ def get_files_info(working_directory, directory="."):
 
         # Check if target directory is in working directory for security reasons
         if not os.path.commonpath([working_abs, directory_abs]) == working_abs:
-            return f'Error: Cannot list "{directory_abs}" as it is outside the permitted working directory'
+            return f'Error: Cannot list "{directory}" as it is outside the permitted working directory'
         
-        # Reading target folder contents and returning a liss
+        # Reading target folder contents and returning a list
         contents = ""
         for item in os.listdir(directory_abs):
             item_abs = os.path.abspath(os.path.join(directory_abs, item))
@@ -40,5 +40,4 @@ def get_files_info(working_directory, directory="."):
         return contents.rstrip("\n")
     except Exception as e:
         return "Error: {e}"
-    
     
